@@ -1,0 +1,50 @@
+package everyone_dice;
+
+import javax.swing.JOptionPane;
+
+public class PlayGame extends Thread 
+{
+   
+   public static boolean switchOfPlayGame; //게임 진행중 판단
+   public static boolean switchOfThrowDiceTurn; //주사위를 던지는턴
+   public static boolean switchOfMoveMalTurn;// 말이동 턴
+   public static boolean switchOfPlayRun; //플레이진챙
+   public static boolean[] switchOfBoardClik = new boolean[19]; //클릭 
+   public static boolean[][] switchOfEndBoardClick = new boolean[2][2];
+
+   public static final int USER1 = 0;
+   public static final int USER2 = 1;
+   public static int playUser;
+   
+  
+   public static boolean switchOfThrowBtn; 
+   public static boolean switchOfMoveClick; 
+   public static boolean switchOfOneMore;
+
+   public PlayGame() 
+   {
+      Swi swi = new Swi();
+      swi.start();
+   }
+
+   public void run() 
+   {
+      switchOfPlayGame = true;
+      
+      while (switchOfPlayGame) 
+      {
+         userStart(USER1);
+         if (!switchOfPlayGame)
+            break;
+         userStart(USER2);
+      }
+   }
+
+   public void userStart(int user) 
+   {
+      switchOfPlayRun = true;
+
+      Data.dataInit();
+
+      playUser = user;
+      JOptionPane.sh
